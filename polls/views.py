@@ -6,3 +6,4 @@ from django.views.generic.list import ListView
 from .models import Poll
 class PollList(ListView):
     model = Poll
+    context_object_name = 'polls'

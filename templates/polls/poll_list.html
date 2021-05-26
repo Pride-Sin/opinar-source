@@ -4,10 +4,11 @@
 <h1 class="text-center header-primary">My polls</h1>
 
 <div class="card-group">
+{% for poll in polls %}
     <div class="card">
         <div class="card__header">
-            <p class="text-center header card__title">Encuesta 1</p>
-            <p class="card__desc card__desc--date">Fecha: 21/03/22</p>
+            <p class="text-center header card__title">{{poll.question}}</p>
+            <p class="card__desc card__desc--date">{{poll.created}}</p>
         </div>
         <div class="card__body">
             <p class="card__desc card__desc--votes">2341 votes</p>
@@ -15,21 +16,10 @@
             <a href="login.html" class="link-bottom-border">Details</a> 
         </div>
     </div>
-
-    <div class="card">
-        <div class="card__header">
-            <p class="text-center header card__title">Encuesta 1</p>
-            <p class="card__desc card__desc--date">Fecha: 21/03/22</p>
-        </div>
-        <div class="card__body">
-            <p class="card__desc card__desc--votes">2341 votes</p>
-            <p class="card__desc card__desc--comments">2341 comments</p>
-            <a href="login.html" class="link-bottom-border">Details</a> 
-        </div>
-    </div>
-    
+    {% empty %}
+        <h2 class="text-center header-primary">No polls created</h1>
+{% endfor %}
 </div>
-
 
 <div class="back-to-profile">  
     <a href="login.html" class="link-bottom-border">Go to Profile</a> 
