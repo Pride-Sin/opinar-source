@@ -1,7 +1,8 @@
 # Django imports
 from django.shortcuts import render
 from django.http import HttpResponse
-
-# Create your views here.
-def pollList(request):
-    return HttpResponse('La vista esta funcionando')
+from django.views.generic.list import ListView
+# Local imports
+from .models import Poll
+class PollList(ListView):
+    model = Poll
