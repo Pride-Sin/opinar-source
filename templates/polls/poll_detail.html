@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        
+<div class="wrapper-vote">   
+    <div class="vote-page__title">
+        <h1 class="vote-page__title-text header-primary">{{poll.question}}</h1>
+        <p class="vote-page__title-date">{{poll.created}}</p>
+    </div>
+    
+    <div class="vote-page__description">
+        <p class="vote-page__description-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam veniam consectetur aspernatur, quasi doloribus optio.</p>
+        <a href="#" class="vote-page__description-more">Leer mas</a>
+    </div>
+
+    <div class="vote-page__vote">
+        <div class="vote-page__vote-value"><span>??</span><span>??</span></div>
+        <div class="vote-page__vote-status vote-page__vote-status--dislike">
+        <div class="vote-page__vote-status vote-page__vote-status--like"></div></div> 
+        <h2>VOTA!</h2>
+        <a href='#'><object type="image/svg+xml" data="img/icons/thumbs-up.svg" class="vote-page__vote-icon vote-page__vote-icon--like anim-wiggle"></object></a>
+        <a href='#'><object type="image/svg+xml" data="img/icons/thumbs-down.svg" class="vote-page__vote-icon vote-page__vote-icon--dislike anim-wiggle"></object></a>
+    </div>
+</div>
+
+<div class="vote-page__fixed-buttons">
+    <a href="#" class="link-bottom-border">Comentar</a> 
+</div>
+
+{% endblock %}

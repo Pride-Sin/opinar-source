@@ -13,7 +13,7 @@
             <p class="card__desc card__desc--date">{{poll.created}}</p>
             <p class="card__desc card__desc--votes">2341 votes</p>
             <p class="card__desc card__desc--comments">2341 comments</p>
-            <a href="login.html" class="link-bottom-border">Details</a> 
+            <a href="{% url 'vote' poll.id %}" class="link-bottom-border">Details</a> 
         </div>
     </div>
     {% empty %}
