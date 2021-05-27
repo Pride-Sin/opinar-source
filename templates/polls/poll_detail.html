@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
         
 <div class="wrapper-vote">   
@@ -18,8 +18,8 @@
         <div class="vote-page__vote-status vote-page__vote-status--dislike">
         <div class="vote-page__vote-status vote-page__vote-status--like"></div></div> 
         <h2>VOTA!</h2>
-        <a href='#'><object type="image/svg+xml" data="img/icons/thumbs-up.svg" class="vote-page__vote-icon vote-page__vote-icon--like anim-wiggle"></object></a>
-        <a href='#'><object type="image/svg+xml" data="img/icons/thumbs-down.svg" class="vote-page__vote-icon vote-page__vote-icon--dislike anim-wiggle"></object></a>
+        <a href='#'><object type="image/svg+xml" data="{% static 'icons/thumbs-up.svg' %}" class="vote-page__vote-icon vote-page__vote-icon--like anim-wiggle"></object></a>
+        <a href='#'><object type="image/svg+xml" data="{% static 'icons/thumbs-down.svg' %}" class="vote-page__vote-icon vote-page__vote-icon--dislike anim-wiggle"></object></a>
     </div>
 </div>
 

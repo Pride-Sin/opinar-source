@@ -1,7 +1,10 @@
 # Django imports
 from django.urls import path
-from . import views
+from django.contrib.auth.views import LogoutView
+# Local imports
+from .views import CustomLogin
 
 urlpatterns = [
-    path('user-list/', views.userList, name='users'),
+    path('login/', CustomLogin.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
 ]

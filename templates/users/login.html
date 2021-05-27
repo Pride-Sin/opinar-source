@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="text-center header-primary">Login</h1>
+
+<form method="POST">
+{% csrf_token %}
+{{form.as_p}}
+<input type="submit" value="Login" class="button submit-button forms-group__button">
+</form>
+<!--<div class="forms-group">
+    <form class="forms-group__form" method="POST">
+
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="email">Email</label></br>
+        <input class="forms-group__input" id="email" type="email" name="email"></br>
+    </div>
+    
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="password">Password</label></br>
+        <input class="forms-group__input" id="password" type="password" name="password"></br>
+    </div>
+
+    <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Login"></div>
+
+    </form>
+</div>-->
+
+<div class="login-register-group">  
+    <div class="separator">Don't have an account?</div>
+    <a href="signup.html" class="link-bottom-border">Signup</a> 
+</div>
+{% endblock %}
