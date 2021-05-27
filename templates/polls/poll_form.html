@@ -1,66 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
 
-    <link rel="stylesheet" href="css/style.css">
+{% block content %}
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<h1 class="text-center header-primary">Create new poll</h1>
 
-    <title>Opin|ar - Polls</title>
-</head>
+<div class="forms-group">
+    <form class="forms-group__form" method="POST">
 
-<body class="white-gradient">
-
-    <header class="header">
-        <div class="header__logo-box"> 
-            <span class="header__logo-box--text"><a href="index.html">Opin<span class="header__logo-box--bar"> | </span>ar</a></span>
-        </div>
-    </header>
-    
-    <div class="content">
-
-              <h1 class="text-center header-primary">Create new poll</h1>
-
-        <div class="forms-group">
-            <form class="forms-group__form" method="POST">
-
-            <div class="forms-group__input-field">
-                <label class="forms-group__label" for="question">Question</label></br>
-                <input class="forms-group__input" id="text" type="question" name="question"></br>
-            </div>
-
-            <div class="forms-group__input-field">
-                <label class="forms-group__label" for="organization">Organization</label></br>
-                <input class="forms-group__input" id="organization" type="text" name="organization"></br>
-            </div>
-
-            <div class="forms-group__input-field">
-                <input class="forms-group__input" id="allow_anon" type="checkbox" name="allow_anon">
-                <label class="forms-group__label" for="allow_anon">Allow anonymous answers</label></br>
-            </div>
-
-            <div class="forms-group__input-field">
-                <input class="forms-group__input" id="allow_anon" type="checkbox" name="allow_anon">
-                <label class="forms-group__label" for="allow_anon">Allow comments</label></br>
-            </div>
-
-            <div class="forms-group__input-field">
-                <input class="forms-group__input" id="allow_results" type="checkbox" name="allow_results">
-                <label class="forms-group__label" for="allow_results">Show results to participants</label></br>
-            </div>
-
-
-            <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Create poll"></div>
-    
-            </form>
-        </div>
-
+    {% csrf_token %}
+    {{form.as_p}}
+    <!--<div class="forms-group__input-field">
+        <label class="forms-group__label" for="question">Question</label></br>
+        <input class="forms-group__input" id="text" type="question" name="question"></br>
     </div>
 
-</body>
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="organization">Organization</label></br>
+        <input class="forms-group__input" id="organization" type="text" name="organization"></br>
+    </div>
 
-</html>
+    <div class="forms-group__input-field">
+        <input class="forms-group__input" id="allow_anon" type="checkbox" name="allow_anon">
+        <label class="forms-group__label" for="allow_anon">Allow anonymous answers</label></br>
+    </div>
+
+    <div class="forms-group__input-field">
+        <input class="forms-group__input" id="allow_anon" type="checkbox" name="allow_anon">
+        <label class="forms-group__label" for="allow_anon">Allow comments</label></br>
+    </div>
+
+    <div class="forms-group__input-field">
+        <input class="forms-group__input" id="allow_results" type="checkbox" name="allow_results">
+        <label class="forms-group__label" for="allow_results">Show results to participants</label></br>
+    </div>-->
+
+    {% if request.get_full_path == "/poll/new/" %} 
+    <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submi" value="Create poll"></div>
+    {% else %}
+    <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submi" value="Update poll"></div>
+    {% endif %}
+    </form>
+</div>
+
+{% endblock %}
+

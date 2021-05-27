@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="copy">
+    <div class="copy__item copy__item--top background-inset">
+        <h1 class="copy__text header-primary">Get <span class="underline">valuable data</span> from polls</h1>
+
+        <div class="copy__stats">
+            <div class="copy_stats-personal">
+                <span class="copy__stats-count">6</span>
+                <h2 class="copy__stats-personal-text">Polls created</h2>
+            </div>
+
+            <div class="copy__stats-overall">
+                <span class="copy__stats-count">1531</span>
+                <h2 class="copy__stats-personal-text">Total votes</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy__item copy__item--CTA">
+        <object type="image/svg+xml" data="{% static 'illustrations/poll_create.svg' %}" class="copy__illustration"></object>
+        <h2 class="copy__text">Create polls and get insights from your clients.</h2>
+        <object type="image/svg+xml" data="{% static 'illustrations/dashboard.svg' %}" class="copy__illustration"></object>
+        <h2 class="copy__text">Use our dashboard to easily understand the data.</h2>
+    </div>
+
+    <a href="{% url 'poll-new' %}" class="button copy__button">Create account</a>
+
+</div>
+
+{% endblock %}

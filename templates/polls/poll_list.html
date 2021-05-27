@@ -13,7 +13,9 @@
             <p class="card__desc card__desc--date">{{poll.created}}</p>
             <p class="card__desc card__desc--votes">2341 votes</p>
             <p class="card__desc card__desc--comments">2341 comments</p>
-            <a href="{% url 'vote' poll.id %}" class="link-bottom-border">Details</a> 
+            <a href="{% url 'poll-vote' poll.id %}" class="link-bottom-border">Details</a><br>
+            <a href="{% url 'poll-update' poll.id %}" class="link-bottom-border">Update</a> <br>
+            <a href="{% url 'poll-delete' poll.id %}" class="link-bottom-border">Delete</a> <br>
         </div>
     </div>
     {% empty %}
