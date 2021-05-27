@@ -2,23 +2,24 @@
 
 {% block content %}
 <h1 class="text-center header-primary">Are you sure you want to delete this poll?</h1>
-
 <div class="card-group">
     <div class="card">
         <div class="card__header">
-            <p class="text-center header card__title">Ship it or not ship it</p>
+            <p class="text-center header card__title">{{ poll.question }}</p>
         </div>
         <div class="card__body">
-            <p class="card__desc card__desc--date">Fecha: 21/03/22</p>
+            <p class="card__desc card__desc--date">{{ poll.created }}</p>
             <p class="card__desc card__desc--votes">2341 votes</p>
             <p class="card__desc card__desc--comments">2341 comments</p>
+            <form method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="button submit-button forms-group__button">
+            </form>
         </div>
     </div>
 
-</div>
-
-
-<div class="back-to-profile">  
-    <a href="login.html" class="link-bottom-border">Yes, delete</a> 
+    <div class="back-to-profile">  
+        <a href="{% url 'polls' %}" class="link-bottom-border">Go back</a> 
+    </div>
 </div>
 {% endblock %}

@@ -8,14 +8,15 @@
     <div class="card">
         <div class="card__header">
             <p class="text-center header card__title">{{poll.question}}</p>
+            
         </div>
         <div class="card__body">
-            <p class="card__desc card__desc--date">{{poll.created}}</p>
-            <p class="card__desc card__desc--votes">2341 votes</p>
+            <p class="card__desc card__desc--date">{{ poll.created }}</p>
+            <p class="card__desc card__desc--votes">5492 votes</p>
             <p class="card__desc card__desc--comments">2341 comments</p>
-            <a href="{% url 'poll-vote' poll.id %}" class="link-bottom-border">Details</a><br>
-            <a href="{% url 'poll-update' poll.id %}" class="link-bottom-border">Update</a> <br>
-            <a href="{% url 'poll-delete' poll.id %}" class="link-bottom-border">Delete</a> <br>
+            <div class="card__action"><a href="{% url 'poll-vote' poll.id %}" class="link-bottom-border">Details</a></div>
+            <div class="card__action"><a href="{% url 'poll-update' poll.id %}" class="link-bottom-border">Update</a></div>
+            <div class="card__action"><a href="{% url 'poll-delete' poll.id %}" class="link-bottom-border">Delete</a></div>
         </div>
     </div>
     {% empty %}
