@@ -1,14 +1,15 @@
 # src/users/admin.py
+# Django imports
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+# Local imports
+from .models import CustomUser
 
-from .models import User
-
-admin.site.register(User)
+admin.site.register(CustomUser)
 
 # Admin models
 class CustomUserAdmin(UserAdmin):
-    model = User
+    model = CustomUser
     list_display = ('email', 'is_staff', 'is_active',)
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (

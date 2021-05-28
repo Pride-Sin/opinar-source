@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1 class="text-center header-primary">Create account</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {% for field in signup_form %}
+    <p>
+    {{ field.label_tag }}
+    {{ field }}
+
+    {% if field.help_text %}
+        <small>{{ field.help_text }}</small>
+    {% endif %}
+
+    {% for error in field.errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+    </p>
+    {% endfor %}
+    <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Signup"></div>
+</form>
+<!--<div class="forms-group">
+    <form class="forms-group__form" method="POST">
+
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="email">Email</label></br>
+        <input class="forms-group__input" id="email" type="email" name="email"></br>
+    </div>
+
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="fname">First name</label></br>
+        <input class="forms-group__input" id="fname" type="text" name="fname"></br>
+    </div>
+
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="lname">Last name</label></br>
+        <input class="forms-group__input" id="lname" type="text" name="lname"></br>
+    </div>
+    
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="password">Password</label></br>
+        <input class="forms-group__input" id="password" type="password" name="password"></br>
+    </div>
+
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="password-confirmation">Password confirmation</label></br>
+        <input class="forms-group__input" id="password-confirmation" type="password" name="password-confirmation"></br>
+    </div>
+
+    <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Create account"></div>
+
+    </form>
+</div>-->
+
+<div class="login-register-group login-register-group--register">  
+    <div class="separator">Already have an account?</div>
+    <a href="{% url 'login' %}" class="link-bottom-border">Login</a> 
+</div>
+
+{% endblock %}

@@ -6,7 +6,7 @@ from users import models as userModels
 
 # Create your models here.
 class Poll(models.Model):
-    user = models.ForeignKey(userModels.User, on_delete=models.CASCADE)
+    user = models.ForeignKey(userModels.CustomUser, on_delete=models.CASCADE)
     question = models.CharField(max_length=60)
     allow_anon = models.BooleanField(default=False)
     allow_comments = models.BooleanField(default=False)
