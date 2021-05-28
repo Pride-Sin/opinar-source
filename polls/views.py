@@ -12,6 +12,10 @@ class PollList(LoginRequiredMixin, ListView):
     model = Poll
     context_object_name = 'polls'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['polls'] = context['polls'].filter(user=self.request.user)
+        return context
 
 class PollDetail(DetailView):
     model = Poll
