@@ -23,8 +23,12 @@ class PollDetail(DetailView):
 
 class PollCreate(LoginRequiredMixin, CreateView):
     model = Poll
-    fields = '__all__'
+    fields = ['question', 'allow_anon', 'allow_comments', 'allow_result']
     success_url = reverse_lazy('polls')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PollCreate, self).form_valid(form)
 
 class PollUpdate(LoginRequiredMixin, UpdateView):
     model = Poll

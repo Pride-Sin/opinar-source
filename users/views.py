@@ -26,4 +26,5 @@ class CustomSignup(CreateView):
 
         # Login the user
         login(self.request, self.object)
+        
         return valid
