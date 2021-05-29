@@ -3,13 +3,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 # Local imports
-from .models import CustomUser
+from .models import User
 
-admin.site.register(CustomUser)
+admin.site.register(User)
 
 # Admin models
 class CustomUserAdmin(UserAdmin):
-    model = CustomUser
+    model = User
     list_display = ('email', 'is_staff', 'is_active',)
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (

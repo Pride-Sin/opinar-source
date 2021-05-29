@@ -6,20 +6,7 @@
 
 <form method="POST">
     {% csrf_token %}
-    {% for field in signup_form %}
-    <p>
-    {{ field.label_tag }}
-    {{ field }}
-
-    {% if field.help_text %}
-        <small>{{ field.help_text }}</small>
-    {% endif %}
-
-    {% for error in field.errors %}
-        <p>{{ error }}</p>
-    {% endfor %}
-    </p>
-    {% endfor %}
+    {{form.as_p}}
     <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Signup"></div>
 </form>
 <!--<div class="forms-group">

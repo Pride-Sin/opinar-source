@@ -2,11 +2,13 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 # Local imports
-from .models import CustomUser
+from .models import User
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField()
 
     class Meta:
-        model = CustomUser
+        model = User
         fields = ['email', 'password1', 'password2']
+        
+            

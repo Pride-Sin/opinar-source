@@ -29,7 +29,7 @@
     {% if user.is_authenticated %}
     <a href="{% url 'poll-new' %}" class="button copy__button">Go to dashboard</a>
     {% else %}
-    <a href="{% url 'poll-new' %}" class="button copy__button">Create Account</a>
+    <a href="{% url 'signup' %}" class="button copy__button">Create Account</a>
     {% endif %}
 </div>
 
