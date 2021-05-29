@@ -9,8 +9,9 @@
     </div>
     
     <div class="vote-page__description">
-        <p class="vote-page__description-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam veniam consectetur aspernatur, quasi doloribus optio.</p>
-        <a href="#" class="vote-page__description-more">Leer mas</a>
+        {% if poll.user.organization %}
+        <p class="vote-page__description-text">Poll by {{poll.user.organization}}</p>
+        {% endif %}
     </div>
 
     <div class="vote-page__vote">
@@ -21,10 +22,6 @@
         <a href='#'><object type="image/svg+xml" data="{% static 'icons/thumbs-up.svg' %}" class="vote-page__vote-icon vote-page__vote-icon--like anim-wiggle"></object></a>
         <a href='#'><object type="image/svg+xml" data="{% static 'icons/thumbs-down.svg' %}" class="vote-page__vote-icon vote-page__vote-icon--dislike anim-wiggle"></object></a>
     </div>
-</div>
-
-<div class="vote-page__fixed-buttons">
-    <a href="#" class="link-bottom-border">Comentar</a> 
 </div>
 
 {% endblock %}

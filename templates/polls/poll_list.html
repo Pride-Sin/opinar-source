@@ -29,6 +29,6 @@
     <a href="{% url 'poll-new' %}" class="link-bottom-border">Add new Poll</a> 
 </div>
 <div class="back-to-profile">  
-    <a href="login.html" class="link-bottom-border">Go to Profile</a> 
+    <a href="{% url 'profile' user.id %}" class="link-bottom-border">Go to Profile</a> 
 </div>
 {% endblock %}

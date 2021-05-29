@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="profile-picture">
+    <img class="profile-picture__img" src="{{ user.picture.url }}" alt="profile picture">
+</div>
+
+<div class="account-detail">        
+<h1 class="username-profile text-center header-primary">{{user.first_name}}</h1>
+<p class="account-detail__org text-center organization-profile">{{user.organization}}</p>
+</div>
+
+<hr>
+<div class="profile-menu">
+    <div class="vote-page__fixed-buttons">
+        <a href="#" class="button profile-menu__button">Dashboard</a> 
+    </div>
+    <div class="vote-page__fixed-buttons">
+        <a href="{% url 'polls' %}" class="button profile-menu__button">My polls</a> 
+    </div>
+    <div class="vote-page__fixed-buttons">
+        <a href="#" class="button profile-menu__button">Settings</a> 
+    </div>
+</div>
+
+{% endblock %}

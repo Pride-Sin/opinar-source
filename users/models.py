@@ -1,4 +1,5 @@
 # Django imports
+from opinar.settings import MEDIA_URL
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
@@ -47,7 +48,7 @@ class User(AbstractUser):
     start_date = models.DateTimeField(auto_now_add=True)
 
     organization = models.CharField(max_length=30, blank=True)
-    picture = models.ImageField(upload_to='users/picture', blank=True, null= True)
+    picture = models.ImageField(upload_to='profile-pictures/', default='profile-pictures/default.png', blank=True, null= True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
