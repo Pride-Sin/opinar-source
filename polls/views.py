@@ -32,7 +32,7 @@ class PollCreate(LoginRequiredMixin, CreateView):
 
 class PollUpdate(LoginRequiredMixin, UpdateView):
     model = Poll
-    fields = '__all__'
+    fields = ['question', 'allow_anon', 'allow_comments', 'allow_result']
     success_url = reverse_lazy('polls')
 
 class PollDelete(LoginRequiredMixin, DeleteView):
