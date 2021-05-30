@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Local imports
 from .models import Poll
+from .forms import PollForm
 
 
 class PollList(LoginRequiredMixin, ListView):
@@ -23,7 +24,8 @@ class PollDetail(DetailView):
 
 class PollCreate(LoginRequiredMixin, CreateView):
     model = Poll
-    fields = ['question', 'allow_anon', 'allow_comments', 'allow_result']
+    form_class = PollForm
+    #fields = ['question', 'allow_anon', 'allow_comments', 'allow_result']
     success_url = reverse_lazy('polls')
 
     def form_valid(self, form):
@@ -32,7 +34,8 @@ class PollCreate(LoginRequiredMixin, CreateView):
 
 class PollUpdate(LoginRequiredMixin, UpdateView):
     model = Poll
-    fields = ['question', 'allow_anon', 'allow_comments', 'allow_result']
+    form_class = PollForm
+    #fields = ['question', 'allow_anon', 'allow_comments', 'allow_result']
     success_url = reverse_lazy('polls')
 
 class PollDelete(LoginRequiredMixin, DeleteView):

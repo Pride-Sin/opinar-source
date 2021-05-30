@@ -7,7 +7,20 @@
     <form class="forms-group__form" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
-    {{form.as_p}}
+    {% for field in form %}
+        {{ field.errors }} <br>
+        <div class="forms-group__input-field">
+
+            <label class="forms-group__label">{{ field.label_tag }}</label><br>
+
+            {{ field }}<br>
+
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+
+        </div>
+    {% endfor %}
 
     <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Update Profile"></div>
 
