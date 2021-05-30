@@ -20,7 +20,7 @@
         <a href="{% url 'polls' %}" class="button profile-menu__button">My polls</a> 
     </div>
     <div class="vote-page__fixed-buttons">
-        <a href="#" class="button profile-menu__button">Settings</a> 
+        <a href="{% url 'user-update' user.id %}" class="button profile-menu__button">Settings</a> 
     </div>
 </div>
 

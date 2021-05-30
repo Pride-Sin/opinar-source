@@ -1,8 +1,9 @@
 # Django imports
+import os
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth import login
 # Local imports
 from .forms import SignupForm
@@ -34,4 +35,13 @@ class CustomSignup(CreateView):
 class UserDetail(DetailView):
     model = User
     context_object_name = 'user'
-    
+
+
+class UserUpdate(UpdateView):
+    model = User
+    fields = ['first_name', 'last_name', 'organization', 'picture']   
+
+    def get_success_url(self):
+        # Added user pk to redirect to profile of the user
+        user_id=self.kwargs['pk']
+        return reverse_lazy('profile', kwargs={'pk': user_id})

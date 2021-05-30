@@ -1,38 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1 class="text-center header-primary">Create new poll</h1>
-
+{% if request.get_full_path == "/poll/new/" %} 
+<h1 class="text-center header-primary">Create poll</h1>
+{% else %}
+<h1 class="text-center header-primary">Update poll</h1>
+{% endif %}
 <div class="forms-group">
-    <form class="forms-group__form" method="POST">
+    <form class="forms-group__form" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
     {{form.as_p}}
-    <!--<div class="forms-group__input-field">
-        <label class="forms-group__label" for="question">Question</label></br>
-        <input class="forms-group__input" id="text" type="question" name="question"></br>
-    </div>
-
-    <div class="forms-group__input-field">
-        <label class="forms-group__label" for="organization">Organization</label></br>
-        <input class="forms-group__input" id="organization" type="text" name="organization"></br>
-    </div>
-
-    <div class="forms-group__input-field">
-        <input class="forms-group__input" id="allow_anon" type="checkbox" name="allow_anon">
-        <label class="forms-group__label" for="allow_anon">Allow anonymous answers</label></br>
-    </div>
-
-    <div class="forms-group__input-field">
-        <input class="forms-group__input" id="allow_anon" type="checkbox" name="allow_anon">
-        <label class="forms-group__label" for="allow_anon">Allow comments</label></br>
-    </div>
-
-    <div class="forms-group__input-field">
-        <input class="forms-group__input" id="allow_results" type="checkbox" name="allow_results">
-        <label class="forms-group__label" for="allow_results">Show results to participants</label></br>
-    </div>-->
 
     {% if request.get_full_path == "/poll/new/" %} 
     <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Create poll"></div>

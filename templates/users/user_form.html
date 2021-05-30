@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="text-center header-primary">Update Profile</h1>
+
+<div class="forms-group">
+    <form class="forms-group__form" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Update Profile"></div>
+
+    </form>
+
+    <div class="back-to-profile">  
+    <a href="{% url 'polls' %}" class="link-bottom-border">Go back</a> 
+    </div>
+</div>
+
+{% endblock %}
+
