@@ -22,3 +22,14 @@ class SignupForm(UserCreationForm):
             'first_name': forms.TextInput(attrs={'class': 'forms-group__input'}),
             'last_name': forms.TextInput(attrs={'class': 'forms-group__input'}),
         }
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'organization', 'picture']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'forms-group__input'}),
+            'last_name': forms.TextInput(attrs={'class': 'forms-group__input'}),
+            'organization': forms.TextInput(attrs={'class': 'forms-group__input'}),
+            'picture': forms.FileInput(attrs={'class': 'forms-group__input', 'style': 'font-size: 1.1rem;'}),
+        }

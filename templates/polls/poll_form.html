@@ -24,14 +24,14 @@
 
         </div>
     {% endfor %}
-
+    <br>
     {% if request.get_full_path == "/poll/new/" %} 
     <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Create poll"></div>
     {% else %}
     <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Update poll"></div>
     {% endif %}
     </form>
-
+    <br><br><br>
     <div class="back-to-profile">  
     <a href="{% url 'polls' %}" class="link-bottom-border">Go back</a> 
     </div>

@@ -7,31 +7,20 @@
         <div class="forms-group">
             <form class="forms-group__form" method="POST">
             {% csrf_token %}
-            <p>{{form.error}}</p>
-            <div class="forms-group__input-field">
-                <label class="forms-group__label" for="email">Email</label></br>
-                <input class="forms-group__input" required type="email" name="email"></br>
-            </div>
+            {% for field in form %}
+            {{ field.errors }} <br>
+                <div class="forms-group__input-field">
 
-            <div class="forms-group__input-field">
-                <label class="forms-group__label" for="first_name">First name</label></br>
-                <input class="forms-group__input" required type="text" name="first_name"></br>
-            </div>
+                    <label class="forms-group__label">{{field.label}}</label><br>
 
-            <div class="forms-group__input-field">
-                <label class="forms-group__label" for="last_name">Last name</label></br>
-                <input class="forms-group__input" required type="text" name="last_name"></br>
-            </div>
-            
-            <div class="forms-group__input-field">
-                <label class="forms-group__label" for="password1">Password</label></br>
-                <input class="forms-group__input" required type="password" name="password1"></br>
-            </div>
+                    {{ field }}<br>
 
-            <div class="forms-group__input-field">
-                <label class="forms-group__label" for="password2">Password confirmation</label></br>
-                <input class="forms-group__input" required type="password" name="password2"></br>
-            </div>
+                    {% if field.help_text %}
+                    <p>{{ field.help_text|safe }}</p>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
 
             <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Create account"></div>
     
