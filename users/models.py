@@ -1,4 +1,5 @@
 # Django imports
+import os
 from opinar.settings import MEDIA_URL
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
@@ -39,6 +40,12 @@ class CustomUserManager(BaseUserManager):
 
 
 # Models here.
+
+# Function to save the profile picture as the hash id of the user
+def profile_picture_name(instance, filename):
+    name, extension = os.path.splitext(instance.picture.name)
+    return '/'.join(['profile-pictures', str(instance.pk) + extension])
+
 class User(AbstractUser):
     """ User model """
     username = None
@@ -48,7 +55,7 @@ class User(AbstractUser):
     start_date = models.DateTimeField(auto_now_add=True)
 
     organization = models.CharField(max_length=30, blank=True)
-    picture = models.ImageField(upload_to='profile-pictures/', default='profile-pictures/default.png')
+    picture = models.ImageField(upload_to=profile_picture_name, default='profile-pictures/default.png')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

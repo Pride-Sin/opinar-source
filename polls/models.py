@@ -19,3 +19,9 @@ class Poll(models.Model):
     class Meta:
         ordering = ['-created']
         verbose_name_plural = "polls"
+
+
+class PollVotes(models.Model):
+    user = models.ForeignKey(userModels.User, on_delete=models.CASCADE, blank=True)
+    vote = models.BooleanField()
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
