@@ -21,11 +21,13 @@
     </div>
     {% empty %}
         <h2 class="text-center header-primary">No polls created</h1>
+        <br>
 {% endfor %}
 </div>
 
 
 <div class="back-to-profile">  
+    <br>
     <a href="{% url 'poll-new' %}" class="link-bottom-border">Add new Poll</a> 
 </div>
 <div class="back-to-profile">  

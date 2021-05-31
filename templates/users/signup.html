@@ -4,58 +4,39 @@
 
 <h1 class="text-center header-primary">Create account</h1>
 
-<div class="forms-group">
-    <form class="forms-group__form" method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-            {{ field.errors }} <br>
+        <div class="forms-group">
+            <form class="forms-group__form" method="POST">
+            {% csrf_token %}
+            <p>{{form.error}}</p>
             <div class="forms-group__input-field">
-
-                <label class="forms-group__label">{{ field.label_tag }}</label><br>
-
-                {{ field }}<br>
-
-                {% if field.help_text %}
-                <p class="help">{{ field.help_text|safe }}</p>
-                {% endif %}
-
+                <label class="forms-group__label" for="email">Email</label></br>
+                <input class="forms-group__input" required type="email" name="email"></br>
             </div>
-        {% endfor %}
-        <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Signup"></div>
-    </form>
-</div>
-<!--<div class="forms-group">
-    <form class="forms-group__form" method="POST">
 
-    <div class="forms-group__input-field">
-        <label class="forms-group__label" for="email">Email</label></br>
-        <input class="forms-group__input" id="email" type="email" name="email"></br>
-    </div>
+            <div class="forms-group__input-field">
+                <label class="forms-group__label" for="first_name">First name</label></br>
+                <input class="forms-group__input" required type="text" name="first_name"></br>
+            </div>
 
-    <div class="forms-group__input-field">
-        <label class="forms-group__label" for="fname">First name</label></br>
-        <input class="forms-group__input" id="fname" type="text" name="fname"></br>
-    </div>
+            <div class="forms-group__input-field">
+                <label class="forms-group__label" for="last_name">Last name</label></br>
+                <input class="forms-group__input" required type="text" name="last_name"></br>
+            </div>
+            
+            <div class="forms-group__input-field">
+                <label class="forms-group__label" for="password1">Password</label></br>
+                <input class="forms-group__input" required type="password" name="password1"></br>
+            </div>
 
-    <div class="forms-group__input-field">
-        <label class="forms-group__label" for="lname">Last name</label></br>
-        <input class="forms-group__input" id="lname" type="text" name="lname"></br>
-    </div>
+            <div class="forms-group__input-field">
+                <label class="forms-group__label" for="password2">Password confirmation</label></br>
+                <input class="forms-group__input" required type="password" name="password2"></br>
+            </div>
+
+            <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Create account"></div>
     
-    <div class="forms-group__input-field">
-        <label class="forms-group__label" for="password">Password</label></br>
-        <input class="forms-group__input" id="password" type="password" name="password"></br>
-    </div>
-
-    <div class="forms-group__input-field">
-        <label class="forms-group__label" for="password-confirmation">Password confirmation</label></br>
-        <input class="forms-group__input" id="password-confirmation" type="password" name="password-confirmation"></br>
-    </div>
-
-    <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Create account"></div>
-
-    </form>
-</div>-->
+            </form>
+        </div>
 
 <div class="login-register-group login-register-group--register">  
     <div class="separator">Already have an account?</div>

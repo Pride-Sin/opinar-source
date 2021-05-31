@@ -4,23 +4,29 @@
 <h1 class="text-center header-primary">Login</h1>
 
 <div class="forms-group">
+
+
     <form class="forms-group__form" method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-            {{ field.errors }} <br>
-            <div class="forms-group__input-field">
+    {% csrf_token %}
 
-                <label class="forms-group__label">{{ field.label_tag }}</label><br>
+    {% if form.non_field_errors %}
+    <div class="forms-group__input-field">
+        <p>Please enter a correct email address and password.</p>
+    </div>
+    {% endif %}
 
-                {{ field }}<br>
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="username">Email</label></br>
+        <input class="forms-group__input" type="email" name="username"></br>
+    </div>
+    
+    <div class="forms-group__input-field">
+        <label class="forms-group__label" for="password">Password</label></br>
+        <input class="forms-group__input" type="password" name="password"></br>
+    </div>
 
-                {% if field.help_text %}
-                <p class="help">{{ field.help_text|safe }}</p>
-                {% endif %}
+    <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Login"></div>
 
-            </div>
-        {% endfor %}
-        <div class="forms-group__button-div"><input class="button submit-button forms-group__button" type="submit" value="Signup"></div>
     </form>
 </div>
 <!--<div class="forms-group">
