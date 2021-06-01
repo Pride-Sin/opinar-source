@@ -1,12 +1,13 @@
 # Django imports
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Local imports
-from .models import Poll
-from .forms import PollForm
+from .models import Poll, PollVote, Vote as NewVote
+from .forms import PollForm, VoteForm
 
 
 class PollList(LoginRequiredMixin, ListView):
@@ -42,3 +43,24 @@ class PollDelete(LoginRequiredMixin, DeleteView):
     model = Poll
     context_object_name = 'poll'
     success_url = reverse_lazy('polls')
+
+
+def vote(request, poll_id):
+    poll = get_object_or_404(Poll, pk=poll_id)
+    user = request.user
+
+    if 'user_vote' in request.POST:
+        # Result of the vote in form
+        user_vote = request.POST['user_vote']
+
+        if user_vote == 'true':
+            user_vote = True
+        else:
+            user_vote = False
+
+        # Create the vote 
+        new_vote, vote_created = NewVote.objects.get_or_create(user=user, vote=user_vote)
+
+
+    context = {'poll' : poll, 'user' : user}
+    return render(request, 'vote.html', context=context)

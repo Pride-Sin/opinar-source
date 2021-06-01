@@ -4,7 +4,7 @@
         
 <div class="wrapper-vote">   
     <div class="vote-page__title">
-        <h1 class="vote-page__title-text header-primary">{{PollVotes.poll.question}}</h1>
+        <h1 class="vote-page__title-text header-primary">{{poll.question}}</h1>
         <p class="vote-page__title-date">{{poll.created}}</p>
     </div>
     
@@ -22,7 +22,11 @@
 
         <form method="POST">{% csrf_token %}
 
-        {{form.as_p}}
+            <input type="radio" name="user_vote" value="true">
+            <label for="true">True</label><br>
+
+            <input type="radio" name="user_vote" value="false">
+            <label for="false">False</label><br>
 
         <input type="submit" value="Vote">
 
