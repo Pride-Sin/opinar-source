@@ -6,7 +6,7 @@ from users import models as userModels
 
 # Create your models here.
 class Poll(models.Model):
-    user = models.ForeignKey(userModels.User, on_delete=models.CASCADE)
+    user = models.ForeignKey(userModels.User, on_delete=models.CASCADE, null=True)
     question = models.CharField(max_length=60)
     allow_anon = models.BooleanField(default=False)
     allow_comments = models.BooleanField(default=False)
@@ -21,7 +21,11 @@ class Poll(models.Model):
         verbose_name_plural = "polls"
 
 
-class PollVotes(models.Model):
-    user = models.ForeignKey(userModels.User, on_delete=models.CASCADE, blank=True)
+class Vote(models.Model):
+    user = models.ForeignKey(userModels.User, on_delete=models.SET_NULL, null=True)
     vote = models.BooleanField()
+
+
+class PollVote(models.Model):
+    vote = models.ForeignKey(Vote, on_delete=models.SET_NULL, blank=True, null=True)
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
