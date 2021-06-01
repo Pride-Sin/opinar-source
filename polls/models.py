@@ -21,11 +21,17 @@ class Poll(models.Model):
         verbose_name_plural = "polls"
 
 
+# Choices for vote
+BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
 class Vote(models.Model):
     user = models.ForeignKey(userModels.User, on_delete=models.SET_NULL, null=True)
-    vote = models.BooleanField()
+    vote = models.BooleanField(choices=BOOL_CHOICES)
 
 
 class PollVote(models.Model):
     vote = models.ForeignKey(Vote, on_delete=models.SET_NULL, blank=True, null=True)
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
+
+    def __str__(self):
+        name = self.poll.question + ' ' + '(' + str(self.vote.user.pk) + ')'
+        return name
