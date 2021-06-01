@@ -58,9 +58,10 @@ def vote(request, poll_id):
         else:
             user_vote = False
 
-        # Create the vote 
+        # Create the Vote 
         new_vote, vote_created = NewVote.objects.get_or_create(user=user, vote=user_vote)
-
+        # Create the PollVote (pivot table to connect Vote and Poll)
+        poll_vote = PollVote.objects.get_or_create(vote=new_vote,poll=poll)
 
     context = {'poll' : poll, 'user' : user}
     return render(request, 'vote.html', context=context)
