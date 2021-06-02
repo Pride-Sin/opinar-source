@@ -21,11 +21,6 @@ class PollList(LoginRequiredMixin, ListView):
         return context
 
 
-class PollDetail(DetailView):
-    model = Poll
-    context_object_name = 'poll'
-
-
 class PollCreate(LoginRequiredMixin, CreateView):
     model = Poll
     form_class = PollForm
@@ -93,8 +88,10 @@ def poll_overview(request, poll_id):
     true_count = PollVote.objects.filter(vote__vote=True,poll=poll).count()
     false_count = PollVote.objects.filter(vote__vote=False,poll=poll).count()
     total_count = true_count + false_count
-
-    if poll.allow_result is False:
+    print("X"*30)
+    print(poll.user)
+    print(user)
+    if poll.allow_result is False and poll.user != user:
         true_count = '??'
         false_count = '??'
         total_count = '??'
