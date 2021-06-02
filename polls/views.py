@@ -1,5 +1,5 @@
 # Django imports
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -19,9 +19,11 @@ class PollList(LoginRequiredMixin, ListView):
         context['polls'] = context['polls'].filter(user=self.request.user)
         return context
 
+
 class PollDetail(DetailView):
     model = Poll
     context_object_name = 'poll'
+
 
 class PollCreate(LoginRequiredMixin, CreateView):
     model = Poll
@@ -33,11 +35,13 @@ class PollCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super(PollCreate, self).form_valid(form)
 
+
 class PollUpdate(LoginRequiredMixin, UpdateView):
     model = Poll
     form_class = PollForm
     #fields = ['question', 'allow_anon', 'allow_comments', 'allow_result']
     success_url = reverse_lazy('polls')
+
 
 class PollDelete(LoginRequiredMixin, DeleteView):
     model = Poll
@@ -48,6 +52,7 @@ class PollDelete(LoginRequiredMixin, DeleteView):
 def vote(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     user = request.user
+    context = {'poll' : poll, 'user' : user}
 
     if 'user_vote' in request.POST:
         # Result of the vote in form
@@ -60,8 +65,23 @@ def vote(request, poll_id):
 
         # Create the Vote 
         new_vote, vote_created = NewVote.objects.get_or_create(user=user, vote=user_vote)
-        # Create the PollVote (pivot table to connect Vote and Poll)
-        poll_vote = PollVote.objects.get_or_create(vote=new_vote,poll=poll)
 
-    context = {'poll' : poll, 'user' : user}
+        # Create the PollVote (pivot table to connect Vote and Poll)
+        poll_vote, created = PollVote.objects.get_or_create(vote=new_vote,poll=poll)
+
+        # render the poll with the results           
+        return redirect('poll-overview', poll_id=poll_id)
+    
     return render(request, 'vote.html', context=context)
+
+
+def poll_overview(request, poll_id):
+    poll = get_object_or_404(Poll, pk=poll_id)
+    user = request.user
+
+    # Ammount of votes for True and False in the poll
+    true_count = PollVote.objects.filter(vote__vote=True,poll=poll).count()
+    false_count = PollVote.objects.filter(vote__vote=False,poll=poll).count()
+
+    context = {'poll' : poll, 'user' : user, 'true_count' : true_count, 'false_count' : false_count}
+    return render(request, 'polls/poll_overview.html', context=context)

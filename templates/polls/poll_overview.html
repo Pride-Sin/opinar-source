@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        
+<div class="wrapper-vote">   
+    <div class="vote-page__title">
+        <h1 class="vote-page__title-text header-primary">{{poll.question}}</h1>
+        <p class="vote-page__title-date">{{poll.created}}</p>
+    </div>
+    
+    <div class="vote-page__description">
+        {% if poll.user.organization %}
+        <p class="vote-page__description-text">Poll by {{poll.user.organization}}</p>
+        {% endif %}
+    </div>
+
+    <h1>{{true_votes}}</h1>
+
+    <div class="vote-page__vote">
+        <div class="vote-page__vote-value"><span>{{true_count}}</span><span>{{false_count}}</span></div>
+        <div class="vote-page__vote-status vote-page__vote-status--dislike">
+        <div class="vote-page__vote-status vote-page__vote-status--like"></div></div> 
+    </div>
+</div>
+
+{% endblock %}
