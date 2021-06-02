@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Local imports
 from .models import Poll, PollVote, Vote as NewVote
-from .forms import PollForm, VoteForm
+from .forms import PollForm
 
 
 class PollList(LoginRequiredMixin, ListView):
@@ -54,23 +54,30 @@ def vote(request, poll_id):
     user = request.user
     context = {'poll' : poll, 'user' : user}
 
-    if 'user_vote' in request.POST:
-        # Result of the vote in form
-        user_vote = request.POST['user_vote']
+    # Get the vote of the user in this poll
+    user_voted = PollVote.objects.filter(vote__user=user,poll=poll).count()
 
-        if user_vote == 'true':
-            user_vote = True
-        else:
-            user_vote = False
+    # If the ammount of votes is not 0, the user has already voted and is redirected to the overview
+    if not user_voted:
+        if 'user_vote' in request.POST:
+            # Result of the vote in form
+            user_vote = request.POST['user_vote']
 
-        # Create the Vote 
-        new_vote, vote_created = NewVote.objects.get_or_create(user=user, vote=user_vote)
+            if user_vote == 'true':
+                user_vote = True
+            else:
+                user_vote = False
 
-        # Create the PollVote (pivot table to connect Vote and Poll)
-        poll_vote, created = PollVote.objects.get_or_create(vote=new_vote,poll=poll)
+            # Create the Vote 
+            new_vote, vote_created = NewVote.objects.get_or_create(user=user, vote=user_vote)
 
-        # render the poll with the results           
-        return redirect('poll-overview', poll_id=poll_id)
+            # Create the PollVote (pivot table to connect Vote and Poll)
+            poll_vote, created = PollVote.objects.get_or_create(vote=new_vote,poll=poll)
+
+            # render the poll with the results           
+            return redirect('poll-overview', poll_id=poll_id)
+    else:
+        return redirect('poll-overview', poll_id=poll_id) 
     
     return render(request, 'vote.html', context=context)
 
