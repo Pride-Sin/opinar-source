@@ -6,7 +6,7 @@
     <div class="vote-page__title">
         <h1 class="vote-page__title-text header-primary">{{poll.question}}</h1>
         <p class="vote-page__title-date">{{poll.created}}</p>
-        <p class="vote-page__title-date">Total votes: <span id="total_count">{{total_count}}</span></p>
+        <p class="vote-page__title-votes">Total votes: <span id="total_count">{{total_count}}</span></p>
     </div>
     
     <div class="vote-page__description">
@@ -23,7 +23,6 @@
         <div id="likes" class="vote-page__vote-status vote-page__vote-status--like"></div></div> 
     </div>
 
-    <button onclick="move()">Click Me</button> 
 </div>
 
 {% endblock %}
