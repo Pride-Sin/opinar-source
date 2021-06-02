@@ -82,6 +82,7 @@ def poll_overview(request, poll_id):
     # Ammount of votes for True and False in the poll
     true_count = PollVote.objects.filter(vote__vote=True,poll=poll).count()
     false_count = PollVote.objects.filter(vote__vote=False,poll=poll).count()
+    total_count = true_count + false_count
 
-    context = {'poll' : poll, 'user' : user, 'true_count' : true_count, 'false_count' : false_count}
+    context = {'poll' : poll, 'user' : user, 'true_count' : true_count, 'false_count' : false_count, 'total_count' : total_count}
     return render(request, 'polls/poll_overview.html', context=context)
