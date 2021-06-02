@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 # Local imports
 from .models import Poll, PollVote, Vote as NewVote
 from .forms import PollForm
@@ -49,6 +50,7 @@ class PollDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('polls')
 
 
+@login_required
 def vote(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     user = request.user
@@ -82,6 +84,7 @@ def vote(request, poll_id):
     return render(request, 'vote.html', context=context)
 
 
+@login_required
 def poll_overview(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     user = request.user
@@ -90,6 +93,11 @@ def poll_overview(request, poll_id):
     true_count = PollVote.objects.filter(vote__vote=True,poll=poll).count()
     false_count = PollVote.objects.filter(vote__vote=False,poll=poll).count()
     total_count = true_count + false_count
+
+    if poll.allow_result is False:
+        true_count = '??'
+        false_count = '??'
+        total_count = '??'
 
     context = {'poll' : poll, 'user' : user, 'true_count' : true_count, 'false_count' : false_count, 'total_count' : total_count}
     return render(request, 'polls/poll_overview.html', context=context)

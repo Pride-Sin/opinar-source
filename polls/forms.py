@@ -7,7 +7,7 @@ from .models import Poll, Vote
 class PollForm(forms.ModelForm):
     class Meta:
         model = Poll
-        fields = ['question', 'allow_anon', 'allow_result']
+        fields = ['question', 'allow_result']
         widgets = {
             'question': forms.TextInput(attrs={'class': 'forms-group__input'})
         }
