@@ -9,10 +9,9 @@
         </div>
         <div class="card__body">
             <p class="card__desc card__desc--date">{{ poll.created }}</p>
-            <p class="card__desc card__desc--votes">2341 votes</p>
-            <p class="card__desc card__desc--comments">2341 comments</p>
             <form method="POST">
             {% csrf_token %}
+            <br><br><br><br><br><br><br><br>
             <input type="submit" value="Delete" class="button submit-button forms-group__button">
             </form>
         </div>
