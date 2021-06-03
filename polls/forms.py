@@ -17,6 +17,3 @@ class VoteForm(forms.ModelForm):
     class Meta:
         model = Vote
         fields = ['vote']
-        #widgets = {
-        #    'question': forms.TextInput(attrs={'class': 'forms-group__input'})
-        #}

@@ -22,18 +22,22 @@
 
         <form method="POST">{% csrf_token %}
 
-            <input type="radio" name="user_vote" value="true">
-            <label for="true">True</label><br>
+            <div class="radio" style="margin-right:8rem">
+                <input class="radio__input" type="radio" name="user_vote" value="true"><br>
+                <label class="radio__label" for="true">Yes</label><br>
+            </div>
 
-            <input type="radio" name="user_vote" value="false">
-            <label for="false">False</label><br>
+            <div class="radio">
+                <input class="radio__input" type="radio" name="user_vote" value="false"><br>
+                <label class="radio__label" for="false">No</label><br>
+            </div>
+            <br>
 
-        <input type="submit" value="Vote">
+
+        <input class="button submit-button forms-group__button" type="submit" value="Vote">
 
         </form>
 
-        <!--<a href=''><object type="image/svg+xml" data="{% static 'icons/thumbs-up.svg' %}" class="vote-page__vote-icon vote-page__vote-icon--like anim-wiggle"></object></a>
-        <a href=''><object type="image/svg+xml" data="{% static 'icons/thumbs-down.svg' %}" class="vote-page__vote-icon vote-page__vote-icon--dislike anim-wiggle"></object></a>-->
     </div>
 </div>
 

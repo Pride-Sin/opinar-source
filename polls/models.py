@@ -1,5 +1,4 @@
 # Django imports
-from django.contrib.auth.models import AnonymousUser
 from django.db import models
 # Local imports
 from users import models as userModels
